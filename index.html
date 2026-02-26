@@ -78,31 +78,31 @@
 </head>
 <body class="p-4 md:p-8 min-h-screen flex flex-col items-center justify-center">
 
-    <header class="text-center mt-12 mb-4 max-w-3xl">
+    <header class="text-center mt-8 mb-6 max-w-3xl">
         <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Positive Attendance Intervention Tiers</h1>
     </header>
     
     <!-- ================= MAIN TIERED FRAMEWORK ================= -->
-    <div class="w-full max-w-6xl flex flex-col items-center space-y-2 pt-4">
+    <div class="w-full max-w-6xl flex flex-col items-center space-y-2 pt-2">
 
         <!-- ================= FORMAL REFERRAL (Top / Candle) ================= -->
         <div class="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[40%] transition-all duration-300 z-40">
             <div class="bg-slate-800 text-white rounded-lg shadow-lg overflow-hidden border-2 border-slate-700">
                 <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none tier-header" onclick="toggleAccordion('formal')">
                     <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">Formal Truancy</h2>
-                        <p class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">(Post-Tier 3 Action)</p>
+                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Formal Truancy</h2>
+                        <p class="text-sm md:text-base font-medium opacity-80 mt-1">(Post-Tier 3 Action)</p>
                     </div>
                     <svg class="w-6 h-6 text-slate-300 chevron absolute right-4 md:right-6" id="chevron-formal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="formal" class="accordion-wrapper bg-slate-50 text-slate-800">
                     <div class="accordion-content">
                         <div class="p-4 space-y-3">
-                            <div class="bg-white p-3 rounded border-l-4 border-slate-600 shadow-sm">
-                                <div class="flex items-center mb-1 font-bold text-xs uppercase tracking-wider text-slate-700">
-                                    <span class="text-base mr-2">⚖️</span> Action Required
+                            <div class="bg-white p-4 rounded border-l-4 border-slate-600 shadow-sm">
+                                <div class="flex items-center mb-2 font-bold text-base text-slate-700">
+                                    <span class="text-lg mr-2">⚖️</span> Action Required
                                 </div>
-                                <p class="text-xs leading-relaxed">Proceed with Formal Truancy Referral & possible court involvement.</p>
+                                <p class="text-base text-gray-700 leading-relaxed">Proceed with Formal Truancy Referral & possible court involvement.</p>
                             </div>
                         </div>
                     </div>
@@ -115,38 +115,38 @@
             <div class="bg-red-50 shadow-lg overflow-hidden border-2 border-red-200 rounded-lg">
                 <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-red-600 text-white tier-header" onclick="toggleAccordion('tier3')">
                     <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">Tier 3: Intensive Support</h2>
-                        <p class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">For Chronic Absenteeism</p>
+                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 3: Intensive Support</h2>
+                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">For Chronic Absenteeism</p>
                     </div>
                     <svg class="w-6 h-6 text-red-100 chevron absolute right-4 md:right-6" id="chevron-tier3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="tier3" class="accordion-wrapper bg-red-50">
                     <div class="accordion-content">
-                        <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <!-- 1. Data -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-data shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-sm text-gray-600">Frequent, student-specific reviews in multidisciplinary teams.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-data shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
+                                <p class="text-base text-gray-700">Frequent, student-specific reviews in multidisciplinary teams.</p>
                             </div>
                             <!-- 2. PBIS -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-pbis shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-sm text-gray-600">Individualized, data-driven, intensive support for significant challenges.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-pbis shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
+                                <p class="text-base text-gray-700">Individualized, data-driven, intensive support for significant challenges.</p>
                             </div>
                             <!-- 3. Policy -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-poly shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-poly-text">📜 Policies</div>
-                                <p class="text-sm text-gray-600">Individualize policies; engage partners for flexible solutions.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-poly shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
+                                <p class="text-base text-gray-700">Individualize policies; engage partners for flexible solutions.</p>
                             </div>
                             <!-- 4. Comm -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-comm shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-sm text-gray-600">Persistent, empathetic outreach; co-create intensive plans with caregivers.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-comm shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
+                                <p class="text-base text-gray-700">Persistent, empathetic outreach; co-create intensive plans with caregivers.</p>
                             </div>
                             <!-- 5. Referral -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-ref shadow-sm sm:col-span-2 lg:col-span-1">
-                                <div class="font-bold text-xs uppercase mb-1 focus-ref-text-read">📍 Referral</div>
-                                <p class="text-sm text-gray-600">Refer for intensive, individualized support.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-ref shadow-sm sm:col-span-2 lg:col-span-1">
+                                <div class="font-bold text-base mb-2 focus-ref-text-read">📍 Referral</div>
+                                <p class="text-base text-gray-700">Refer for intensive, individualized support.</p>
                             </div>
                         </div>
                     </div>
@@ -159,38 +159,38 @@
             <div class="bg-orange-50 shadow-lg overflow-hidden border-2 border-orange-200 rounded-lg">
                 <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-orange-500 text-white tier-header" onclick="toggleAccordion('tier2')">
                     <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">Tier 2: Targeted Support</h2>
-                        <p class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">For At-Risk Students</p>
+                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 2: Targeted Support</h2>
+                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">For At-Risk Students</p>
                     </div>
                     <svg class="w-6 h-6 text-orange-100 chevron absolute right-4 md:right-6" id="chevron-tier2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
                 <div id="tier2" class="accordion-wrapper bg-orange-50">
                     <div class="accordion-content">
-                        <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                             <!-- 1. Data -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-data shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-sm text-gray-600">Use disaggregated data to uncover common barriers.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-data shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
+                                <p class="text-base text-gray-700">Use disaggregated data to uncover common barriers.</p>
                             </div>
                             <!-- 2. PBIS -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-pbis shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-sm text-gray-600">Target students with emerging concerns via structured interventions.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-pbis shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
+                                <p class="text-base text-gray-700">Target students with emerging concerns via structured interventions.</p>
                             </div>
                             <!-- 3. Policy -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-poly shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-poly-text">📜 Policies</div>
-                                <p class="text-sm text-gray-600">Modify policies to reduce punitive responses and increase connection.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-poly shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
+                                <p class="text-base text-gray-700">Modify policies to reduce punitive responses and increase connection.</p>
                             </div>
                             <!-- 4. Comm -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-comm shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-sm text-gray-600">Personalized outreach; two-way communication to identify barriers.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-comm shadow-sm">
+                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
+                                <p class="text-base text-gray-700">Personalized outreach; two-way communication to identify barriers.</p>
                             </div>
                             <!-- 5. Referral -->
-                            <div class="bg-white p-3 rounded border-l-4 focus-ref shadow-sm md:col-span-2 lg:col-span-1">
-                                <div class="font-bold text-xs uppercase mb-1 focus-ref-text-read">📍 Referral</div>
-                                <p class="text-sm text-gray-600">Refer to targeted interventions addressing root causes.</p>
+                            <div class="bg-white p-4 rounded border-l-4 focus-ref shadow-sm md:col-span-2 lg:col-span-1">
+                                <div class="font-bold text-base mb-2 focus-ref-text-read">📍 Referral</div>
+                                <p class="text-base text-gray-700">Refer to targeted interventions addressing root causes.</p>
                             </div>
                         </div>
                     </div>
@@ -203,8 +203,8 @@
             <div class="bg-green-50 rounded-lg shadow-lg overflow-hidden border-2 border-green-200">
                 <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-green-600 text-white tier-header" onclick="toggleAccordion('tier1')">
                     <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">Tier 1: Universal Supports</h2>
-                        <p class="text-base md:text-lg lg:text-xl font-bold uppercase tracking-wider leading-snug">to Encourage Positive Attendance</p>
+                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 1: Universal Supports</h2>
+                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">To Encourage Positive Attendance</p>
                     </div>
                     <svg class="w-6 h-6 text-green-100 chevron absolute right-4 md:right-6" id="chevron-tier1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                 </button>
@@ -213,23 +213,23 @@
                         <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                             <!-- 1. Data -->
                             <div class="bg-white p-4 rounded border-l-4 focus-data shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-sm text-gray-600">Monitor trends regularly to identify patterns and inform preventive strategies.</p>
+                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
+                                <p class="text-base text-gray-700">Monitor trends regularly to identify patterns and inform preventive strategies.</p>
                             </div>
                             <!-- 2. PBIS -->
                             <div class="bg-white p-4 rounded border-l-4 focus-pbis shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-sm text-gray-600">Establish proactive, schoolwide strategies and a positive climate where attendance is explicitly taught.</p>
+                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
+                                <p class="text-base text-gray-700">Establish proactive, schoolwide strategies and a positive climate where attendance is explicitly taught.</p>
                             </div>
                             <!-- 3. Policy -->
                             <div class="bg-white p-4 rounded border-l-4 focus-poly shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-poly-text">📜 Policies</div>
-                                <p class="text-sm text-gray-600">Establish equitable policies that encourage daily attendance and remove systemic barriers.</p>
+                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
+                                <p class="text-base text-gray-700">Establish equitable policies that encourage daily attendance and remove systemic barriers.</p>
                             </div>
                             <!-- 4. Comm -->
                             <div class="bg-white p-4 rounded border-l-4 focus-comm shadow-sm">
-                                <div class="font-bold text-xs uppercase mb-1 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-sm text-gray-600">Establish positive, proactive communication to build awareness and partnerships.</p>
+                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
+                                <p class="text-base text-gray-700">Establish positive, proactive communication to build awareness and partnerships.</p>
                             </div>
                         </div>
                     </div>
@@ -240,25 +240,25 @@
     </div>
 
     <!-- ================= FOOTER & LEGEND ================= -->
-    <footer class="text-center mt-12 mb-4 max-w-3xl">
-        <p class="text-slate-500 mb-6">Focus Areas</p>
+    <footer class="text-center mt-12 mb-12 w-full max-w-5xl mx-auto px-4">
+        <h3 class="text-base md:text-lg lg:text-xl font-bold text-slate-700 mb-6">Focus Areas</h3>
         
         <!-- Legend -->
-        <div class="flex flex-wrap justify-center gap-3 text-xs font-bold uppercase tracking-wide text-slate-600">
-            <div class="flex items-center px-3 py-1 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span class="w-3 h-3 rounded-full mr-2" style="background-color: #b793ff;"></span> Data
+        <div class="flex flex-wrap justify-center gap-3 md:gap-5 text-sm md:text-base font-bold text-slate-700">
+            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #b793ff;"></span> Data
             </div>
-            <div class="flex items-center px-3 py-1 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span class="w-3 h-3 rounded-full mr-2" style="background-color: #f6b26b;"></span> PBIS
+            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #f6b26b;"></span> PBIS
             </div>
-            <div class="flex items-center px-3 py-1 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span class="w-3 h-3 rounded-full mr-2" style="background-color: #99ff99;"></span> Policy
+            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #99ff99;"></span> Policy
             </div>
-            <div class="flex items-center px-3 py-1 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span class="w-3 h-3 rounded-full mr-2" style="background-color: #66ccff;"></span> Communication
+            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #66ccff;"></span> Communication
             </div>
-            <div class="flex items-center px-3 py-1 rounded-full border border-slate-200 bg-white shadow-sm">
-                <span class="w-3 h-3 rounded-full mr-2" style="background-color: #ffff99;"></span> Referral
+            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #ffff99;"></span> Referral
             </div>
         </div>
     </footer>
