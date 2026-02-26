@@ -74,6 +74,14 @@
         .focus-ref-text { color: #bxbx00; }
         .focus-ref-text-read { color: #999900; } 
         .focus-ref-bg { background-color: #ffffed; }
+
+        /* Interactive Legend Styles */
+        .legend-inactive {
+            opacity: 0.4;
+            filter: grayscale(100%);
+            background-color: #f1f5f9; /* slate-100 */
+            border-color: #e2e8f0; /* slate-200 */
+        }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen flex flex-col items-center justify-center">
@@ -175,7 +183,7 @@
                             <!-- 2. PBIS -->
                             <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
                                 <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-base text-gray-700">Provide structured, relationship-based supports to address early signs of disengagement.</p>
+                                <p class="text-base text-gray-700">Provide structured, relationship-based supports to address early signs of disengagement and attendance concerns.</p>
                             </div>
                             <!-- 3. Policy -->
                             <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
@@ -241,25 +249,25 @@
 
     <!-- ================= FOOTER & LEGEND ================= -->
     <footer class="text-center mt-12 mb-12 w-full max-w-5xl mx-auto px-4">
-        <h3 class="text-base md:text-lg lg:text-xl font-bold text-slate-700 mb-6">Focus Areas</h3>
+        <h3 class="text-base md:text-lg lg:text-xl font-bold text-slate-700 mb-6">Focus Areas (click to toggle on/off in the Tiers above)</h3>
         
-        <!-- Legend -->
+        <!-- Legend (Interactive Buttons) -->
         <div class="flex flex-wrap justify-center gap-3 md:gap-5 text-sm md:text-base font-bold text-slate-700">
-            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #b793ff;"></span> Data
-            </div>
-            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #f6b26b;"></span> PBIS
-            </div>
-            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #99ff99;"></span> Policy
-            </div>
-            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #66ccff;"></span> Communication
-            </div>
-            <div class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-shadow">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3" style="background-color: #ffff99;"></span> Referral
-            </div>
+            <button id="legend-data" onclick="toggleFocusArea('data')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #b793ff;"></span> Data
+            </button>
+            <button id="legend-pbis" onclick="toggleFocusArea('pbis')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #f6b26b;"></span> PBIS
+            </button>
+            <button id="legend-poly" onclick="toggleFocusArea('poly')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #99ff99;"></span> Policy
+            </button>
+            <button id="legend-comm" onclick="toggleFocusArea('comm')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #66ccff;"></span> Communication
+            </button>
+            <button id="legend-ref" onclick="toggleFocusArea('ref')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #ffff99;"></span> Referral
+            </button>
         </div>
 
         <p class="text-base text-gray-700 mt-8">Developed by the Oakland Schools Student Attendance Collaborative. Pair this tool with the <a href="https://docs.google.com/document/d/1JCDCm-SHNMgY-2U0hBb7xiRnypilbQ6LqDTfF7h2aGo/edit?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors">Guidance for Use of the Positive Attendance Intervention Tiers Tool</a> for detailed strategies and aligned resources.</p>
@@ -274,6 +282,21 @@
             // Sibling items are completely ignored, keeping them open if they already were.
             wrapper.classList.toggle('active');
             chevron.classList.toggle('rotate');
+        }
+
+        function toggleFocusArea(areaType) {
+            // 1. Toggle the visual state of the clicked legend button
+            const legendButton = document.getElementById('legend-' + areaType);
+            if (legendButton) {
+                legendButton.classList.toggle('legend-inactive');
+            }
+
+            // 2. Find all cards that match this focus area and toggle their visibility
+            // We use Tailwind's 'hidden' class (display: none) to cleanly remove them from the grid flow
+            const cards = document.querySelectorAll('.focus-' + areaType);
+            cards.forEach(card => {
+                card.classList.toggle('hidden');
+            });
         }
     </script>
 </body>
