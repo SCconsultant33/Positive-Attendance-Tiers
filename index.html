@@ -30,10 +30,12 @@
             overflow: hidden;
             opacity: 0;
             transition: opacity 0.4s ease-in-out;
+            visibility: hidden; /* Helps with screen readers when collapsed */
         }
 
         .accordion-wrapper.active > .accordion-content {
             opacity: 1;
+            visibility: visible;
         }
 
         /* Chevron rotation */
@@ -53,224 +55,239 @@
             transform: translateY(-1px);
         }
 
-        /* Custom Strand Colors (Focus Areas) */
+        /* Custom Strand Colors (Focus Areas) - Updated for WCAG 4.5:1 Contrast */
         .focus-data { border-left-color: #b793ff; }
-        .focus-data-text { color: #8e6ecc; }
+        .focus-data-text { color: #5a2c9e; } /* Darkened from #8e6ecc */
         .focus-data-bg { background-color: #f2ebff; }
 
         .focus-pbis { border-left-color: #f6b26b; }
-        .focus-pbis-text { color: #d98e40; }
+        .focus-pbis-text { color: #9a4d00; } /* Darkened from #d98e40 */
         .focus-pbis-bg { background-color: #fef4e8; }
 
         .focus-poly { border-left-color: #99ff99; }
-        .focus-poly-text { color: #4dad4d; }
+        .focus-poly-text { color: #216e21; } /* Darkened from #4dad4d */
         .focus-poly-bg { background-color: #f0fff0; }
 
         .focus-comm { border-left-color: #66ccff; }
-        .focus-comm-text { color: #3399cc; }
+        .focus-comm-text { color: #0f5c8a; } /* Darkened from #3399cc */
         .focus-comm-bg { background-color: #e6f7ff; }
 
         .focus-ref { border-left-color: #ffff99; }
-        .focus-ref-text { color: #bxbx00; }
-        .focus-ref-text-read { color: #999900; } 
+        .focus-ref-text { color: #666600; } /* Darkened from #bxbx00 */
+        .focus-ref-text-read { color: #666600; } /* Darkened from #999900 */
         .focus-ref-bg { background-color: #ffffed; }
 
         /* Interactive Legend Styles */
         .legend-inactive {
-            opacity: 0.4;
+            opacity: 0.5;
             filter: grayscale(100%);
             background-color: #f1f5f9; /* slate-100 */
-            border-color: #e2e8f0; /* slate-200 */
+            border-color: #cbd5e1; /* slate-300 */
         }
     </style>
 </head>
 <body class="p-4 md:p-8 min-h-screen flex flex-col items-center justify-center">
 
-    <header class="text-center mt-8 mb-6 max-w-3xl">
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Positive Attendance Intervention Tiers</h1>
-    </header>
-    
-    <!-- ================= MAIN TIERED FRAMEWORK ================= -->
-    <div class="w-full max-w-6xl flex flex-col items-center space-y-2 pt-2">
+    <main class="w-full flex flex-col items-center">
+        <header class="text-center mt-8 mb-6 max-w-3xl">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">Positive Attendance Intervention Tiers</h1>
+        </header>
+        
+        <!-- ================= MAIN TIERED FRAMEWORK ================= -->
+        <div class="w-full max-w-6xl flex flex-col items-center space-y-2 pt-2">
 
-        <!-- ================= FORMAL REFERRAL (Top / Candle) ================= -->
-        <div class="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[40%] transition-all duration-300 z-40">
-            <div class="bg-slate-800 text-white rounded-lg shadow-lg overflow-hidden border-2 border-slate-700">
-                <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none tier-header" onclick="toggleAccordion('formal')">
-                    <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Formal Truancy</h2>
-                        <p class="text-sm md:text-base font-medium opacity-80 mt-1">Post-Tier 3 Action</p>
-                    </div>
-                    <svg class="w-6 h-6 text-slate-300 chevron absolute right-4 md:right-6" id="chevron-formal" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="formal" class="accordion-wrapper bg-slate-50 text-slate-800">
-                    <div class="accordion-content">
-                        <div class="p-4 space-y-3">
-                            <div class="bg-white p-4 rounded border-l-8 border-slate-600 shadow-sm">
-                                <div class="flex items-center mb-2 font-bold text-base text-slate-700">
-                                    <span class="text-lg mr-2">⚖️</span> Action Required
+            <!-- ================= FORMAL REFERRAL (Top / Candle) ================= -->
+            <div class="w-[85%] sm:w-[60%] md:w-[45%] lg:w-[40%] transition-all duration-300 z-40">
+                <div class="bg-slate-800 text-white rounded-lg shadow-lg overflow-hidden border-2 border-slate-700">
+                    <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 focus-visible:ring-inset tier-header" 
+                            onclick="toggleAccordion('formal')" 
+                            aria-expanded="false" 
+                            aria-controls="formal">
+                        <div class="text-center px-8 sm:px-12">
+                            <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Formal Truancy</h2>
+                            <p class="text-sm md:text-base font-medium opacity-80 mt-1">Post-Tier 3 Action</p>
+                        </div>
+                        <svg class="w-6 h-6 text-slate-300 chevron absolute right-4 md:right-6" id="chevron-formal" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="formal" class="accordion-wrapper bg-slate-50 text-slate-800">
+                        <div class="accordion-content">
+                            <div class="p-4 space-y-3">
+                                <div class="bg-white p-4 rounded border-l-8 border-slate-600 shadow-sm">
+                                    <div class="flex items-center mb-2 font-bold text-base text-slate-700">
+                                        <span class="text-lg mr-2" aria-hidden="true">⚖️</span> Action Required
+                                    </div>
+                                    <p class="text-base text-gray-700 leading-relaxed">Initiate formal truancy procedures after Tier 3 interventions have been exhausted.</p>
                                 </div>
-                                <p class="text-base text-gray-700 leading-relaxed">Initiate formal truancy procedures after Tier 3 interventions have been exhausted.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ================= TIER 3 (Top Tier) ================= -->
-        <div class="w-[90%] sm:w-[75%] md:w-[65%] lg:w-[60%] transition-all duration-300 z-30">
-            <div class="bg-red-50 shadow-lg overflow-hidden border-2 border-red-200 rounded-lg">
-                <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-red-600 text-white tier-header" onclick="toggleAccordion('tier3')">
-                    <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 3: Intensive Support</h2>
-                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">For Chronic Absenteeism</p>
-                    </div>
-                    <svg class="w-6 h-6 text-red-100 chevron absolute right-4 md:right-6" id="chevron-tier3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="tier3" class="accordion-wrapper bg-red-50">
-                    <div class="accordion-content">
-                        <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <!-- 1. Data -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-base text-gray-700">Conduct structured, student-level data reviews to guide individualized planning, monitor progress, and adjust supports.</p>
-                            </div>
-                            <!-- 2. PBIS -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-base text-gray-700">Deliver individualized, data-informed behavioral and engagement supports to address significant challenges.</p>
-                            </div>
-                            <!-- 3. Policy -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
-                                <p class="text-base text-gray-700">Individualize and formalize pathways to meet complex student needs and support sustained attendance.</p>
-                            </div>
-                            <!-- 4. Comm -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-base text-gray-700">Engage families through sustained, strengths-based outreach to co-develop and monitor intensive attendance plans.</p>
-                            </div>
-                            <!-- 5. Referral -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-ref shadow-sm sm:col-span-2 lg:col-span-1">
-                                <div class="font-bold text-base mb-2 focus-ref-text-read">📍 Referral</div>
-                                <p class="text-base text-gray-700">Coordinate intensive interventions through individualized referrals and interagency collaboration.</p>
+            <!-- ================= TIER 3 (Top Tier) ================= -->
+            <div class="w-[90%] sm:w-[75%] md:w-[65%] lg:w-[60%] transition-all duration-300 z-30">
+                <div class="bg-red-50 shadow-lg overflow-hidden border-2 border-red-200 rounded-lg">
+                    <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 focus-visible:ring-inset bg-red-600 text-white tier-header" 
+                            onclick="toggleAccordion('tier3')"
+                            aria-expanded="false" 
+                            aria-controls="tier3">
+                        <div class="text-center px-8 sm:px-12">
+                            <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 3: Intensive Support</h2>
+                            <p class="text-sm md:text-base font-medium opacity-90 mt-1">For Chronic Absenteeism</p>
+                        </div>
+                        <svg class="w-6 h-6 text-red-100 chevron absolute right-4 md:right-6" id="chevron-tier3" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="tier3" class="accordion-wrapper bg-red-50">
+                        <div class="accordion-content">
+                            <div class="p-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- 1. Data -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-data-text"><span aria-hidden="true">📊</span> Data Analysis</div>
+                                    <p class="text-base text-gray-700">Conduct structured, student-level data reviews to guide individualized planning, monitor progress, and adjust supports.</p>
+                                </div>
+                                <!-- 2. PBIS -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-pbis-text"><span aria-hidden="true">🏫</span> PBIS Strategy</div>
+                                    <p class="text-base text-gray-700">Deliver individualized, data-informed behavioral and engagement supports to address significant challenges.</p>
+                                </div>
+                                <!-- 3. Policy -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-poly-text"><span aria-hidden="true">📜</span> Policies</div>
+                                    <p class="text-base text-gray-700">Individualize and formalize pathways to meet complex student needs and support sustained attendance.</p>
+                                </div>
+                                <!-- 4. Comm -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-comm-text"><span aria-hidden="true">🗣️</span> Communication</div>
+                                    <p class="text-base text-gray-700">Engage families through sustained, strengths-based outreach to co-develop and monitor intensive attendance plans.</p>
+                                </div>
+                                <!-- 5. Referral -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-ref shadow-sm sm:col-span-2 lg:col-span-1">
+                                    <div class="font-bold text-base mb-2 focus-ref-text-read"><span aria-hidden="true">📍</span> Referral</div>
+                                    <p class="text-base text-gray-700">Coordinate intensive interventions through individualized referrals and interagency collaboration.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ================= TIER 2 (Middle Tier) ================= -->
-        <div class="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] transition-all duration-300 z-20">
-            <div class="bg-orange-50 shadow-lg overflow-hidden border-2 border-orange-200 rounded-lg">
-                <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-orange-500 text-white tier-header" onclick="toggleAccordion('tier2')">
-                    <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 2: Targeted Support</h2>
-                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">For At-Risk Students</p>
-                    </div>
-                    <svg class="w-6 h-6 text-orange-100 chevron absolute right-4 md:right-6" id="chevron-tier2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="tier2" class="accordion-wrapper bg-orange-50">
-                    <div class="accordion-content">
-                        <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <!-- 1. Data -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-base text-gray-700">Leverage disaggregated and qualitative data to identify emerging concerns and determine contributing factors.</p>
-                            </div>
-                            <!-- 2. PBIS -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-base text-gray-700">Provide structured, relationship-based supports to address early signs of disengagement.</p>
-                            </div>
-                            <!-- 3. Policy -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
-                                <p class="text-base text-gray-700">Adapt practices to increase access, reduce exclusionary responses, and respond to emerging concerns.</p>
-                            </div>
-                            <!-- 4. Comm -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-base text-gray-700">Facilitate personalized, two-way communication to collaboratively address attendance challenges.</p>
-                            </div>
-                            <!-- 5. Referral -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-ref shadow-sm md:col-span-2 lg:col-span-1">
-                                <div class="font-bold text-base mb-2 focus-ref-text-read">📍 Referral</div>
-                                <p class="text-base text-gray-700">Connect students and families to targeted supports that address the root cause of poor attendance.</p>
+            <!-- ================= TIER 2 (Middle Tier) ================= -->
+            <div class="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] transition-all duration-300 z-20">
+                <div class="bg-orange-50 shadow-lg overflow-hidden border-2 border-orange-200 rounded-lg">
+                    <!-- Changed bg-orange-500 to bg-orange-600 for better white text contrast -->
+                    <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 focus-visible:ring-inset bg-orange-600 text-white tier-header" 
+                            onclick="toggleAccordion('tier2')"
+                            aria-expanded="false" 
+                            aria-controls="tier2">
+                        <div class="text-center px-8 sm:px-12">
+                            <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 2: Targeted Support</h2>
+                            <p class="text-sm md:text-base font-medium opacity-90 mt-1">For At-Risk Students</p>
+                        </div>
+                        <svg class="w-6 h-6 text-orange-100 chevron absolute right-4 md:right-6" id="chevron-tier2" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="tier2" class="accordion-wrapper bg-orange-50">
+                        <div class="accordion-content">
+                            <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <!-- 1. Data -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-data-text"><span aria-hidden="true">📊</span> Data Analysis</div>
+                                    <p class="text-base text-gray-700">Leverage disaggregated and qualitative data to identify emerging concerns and determine contributing factors.</p>
+                                </div>
+                                <!-- 2. PBIS -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-pbis-text"><span aria-hidden="true">🏫</span> PBIS Strategy</div>
+                                    <p class="text-base text-gray-700">Provide structured, relationship-based supports to address early signs of disengagement.</p>
+                                </div>
+                                <!-- 3. Policy -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-poly-text"><span aria-hidden="true">📜</span> Policies</div>
+                                    <p class="text-base text-gray-700">Adapt practices to increase access, reduce exclusionary responses, and respond to emerging concerns.</p>
+                                </div>
+                                <!-- 4. Comm -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-comm-text"><span aria-hidden="true">🗣️</span> Communication</div>
+                                    <p class="text-base text-gray-700">Facilitate personalized, two-way communication to collaboratively address attendance challenges.</p>
+                                </div>
+                                <!-- 5. Referral -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-ref shadow-sm md:col-span-2 lg:col-span-1">
+                                    <div class="font-bold text-base mb-2 focus-ref-text-read"><span aria-hidden="true">📍</span> Referral</div>
+                                    <p class="text-base text-gray-700">Connect students and families to targeted supports that address the root cause of poor attendance.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- ================= TIER 1 (Base Tier) ================= -->
-        <div class="w-full transition-all duration-300 z-10">
-            <div class="bg-green-50 rounded-lg shadow-lg overflow-hidden border-2 border-green-200">
-                <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus:outline-none bg-green-600 text-white tier-header" onclick="toggleAccordion('tier1')">
-                    <div class="text-center px-8 sm:px-12">
-                        <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 1: Universal Supports</h2>
-                        <p class="text-sm md:text-base font-medium opacity-90 mt-1">To Encourage Positive Attendance</p>
-                    </div>
-                    <svg class="w-6 h-6 text-green-100 chevron absolute right-4 md:right-6" id="chevron-tier1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </button>
-                <div id="tier1" class="accordion-wrapper bg-green-50">
-                    <div class="accordion-content">
-                        <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <!-- 1. Data -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-data-text">📊 Data Analysis</div>
-                                <p class="text-base text-gray-700">Monitor schoolwide trends to identify patterns, equity gaps, and inform preventive strategies.</p>
-                            </div>
-                            <!-- 2. PBIS -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-pbis-text">🏫 PBIS Strategy</div>
-                                <p class="text-base text-gray-700">Build proactive, schoolwide systems that promote engagement within a positive climate.</p>
-                            </div>
-                            <!-- 3. Policy -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-poly-text">📜 Policies</div>
-                                <p class="text-base text-gray-700">Establish equitable policies and procedures that remove systemic barriers and ensure consistency.</p>
-                            </div>
-                            <!-- 4. Comm -->
-                            <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
-                                <div class="font-bold text-base mb-2 focus-comm-text">🗣️ Communication</div>
-                                <p class="text-base text-gray-700">Deliver positive and accessible communications to build shared attendance ownership.</p>
+            <!-- ================= TIER 1 (Base Tier) ================= -->
+            <div class="w-full transition-all duration-300 z-10">
+                <div class="bg-green-50 rounded-lg shadow-lg overflow-hidden border-2 border-green-200">
+                    <button class="w-full p-5 md:p-6 flex justify-center items-center relative focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-blue-400 focus-visible:ring-inset bg-green-600 text-white tier-header" 
+                            onclick="toggleAccordion('tier1')"
+                            aria-expanded="false" 
+                            aria-controls="tier1">
+                        <div class="text-center px-8 sm:px-12">
+                            <h2 class="text-base md:text-lg lg:text-xl font-bold leading-snug">Tier 1: Universal Supports</h2>
+                            <p class="text-sm md:text-base font-medium opacity-90 mt-1">To Encourage Positive Attendance</p>
+                        </div>
+                        <svg class="w-6 h-6 text-green-100 chevron absolute right-4 md:right-6" id="chevron-tier1" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="tier1" class="accordion-wrapper bg-green-50">
+                        <div class="accordion-content">
+                            <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                <!-- 1. Data -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-data shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-data-text"><span aria-hidden="true">📊</span> Data Analysis</div>
+                                    <p class="text-base text-gray-700">Monitor schoolwide trends to identify patterns, equity gaps, and inform preventive strategies.</p>
+                                </div>
+                                <!-- 2. PBIS -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-pbis shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-pbis-text"><span aria-hidden="true">🏫</span> PBIS Strategy</div>
+                                    <p class="text-base text-gray-700">Build proactive, schoolwide systems that promote engagement within a positive climate.</p>
+                                </div>
+                                <!-- 3. Policy -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-poly shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-poly-text"><span aria-hidden="true">📜</span> Policies</div>
+                                    <p class="text-base text-gray-700">Establish equitable policies and procedures that remove systemic barriers and ensure consistency.</p>
+                                </div>
+                                <!-- 4. Comm -->
+                                <div class="bg-white p-4 rounded border-l-8 focus-comm shadow-sm">
+                                    <div class="font-bold text-base mb-2 focus-comm-text"><span aria-hidden="true">🗣️</span> Communication</div>
+                                    <p class="text-base text-gray-700">Deliver positive and accessible communications to build shared attendance ownership.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </main>
 
     <!-- ================= FOOTER & LEGEND ================= -->
     <footer class="text-center mt-12 mb-12 w-full max-w-5xl mx-auto px-4">
-        <h3 class="text-base md:text-lg lg:text-xl font-bold text-slate-700 mb-6">Focus Areas (click to toggle on/off in the Tiers above)</h3>
+        <h3 class="text-base md:text-lg lg:text-xl font-bold text-slate-700 mb-6" id="legend-heading">Focus Areas (click to toggle on/off in the Tiers above)</h3>
         
         <!-- Legend (Interactive Buttons) -->
-        <div class="flex flex-wrap justify-center gap-3 md:gap-5 text-sm md:text-base font-bold text-slate-700">
-            <button id="legend-data" onclick="toggleFocusArea('data')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #b793ff;"></span> Data
+        <div class="flex flex-wrap justify-center gap-3 md:gap-5 text-sm md:text-base font-bold text-slate-700" role="group" aria-labelledby="legend-heading">
+            <button id="legend-data" onclick="toggleFocusArea('data')" aria-pressed="true" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #b793ff;" aria-hidden="true"></span> Data
             </button>
-            <button id="legend-pbis" onclick="toggleFocusArea('pbis')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #f6b26b;"></span> PBIS
+            <button id="legend-pbis" onclick="toggleFocusArea('pbis')" aria-pressed="true" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #f6b26b;" aria-hidden="true"></span> PBIS
             </button>
-            <button id="legend-poly" onclick="toggleFocusArea('poly')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #99ff99;"></span> Policy
+            <button id="legend-poly" onclick="toggleFocusArea('poly')" aria-pressed="true" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #99ff99;" aria-hidden="true"></span> Policy
             </button>
-            <button id="legend-comm" onclick="toggleFocusArea('comm')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #66ccff;"></span> Communication
+            <button id="legend-comm" onclick="toggleFocusArea('comm')" aria-pressed="true" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #66ccff;" aria-hidden="true"></span> Communication
             </button>
-            <button id="legend-ref" onclick="toggleFocusArea('ref')" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer">
-                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #ffff99;"></span> Referral
+            <button id="legend-ref" onclick="toggleFocusArea('ref')" aria-pressed="true" class="flex items-center px-4 md:px-5 py-2 md:py-3 rounded-full border-2 border-slate-200 bg-white shadow-sm hover:shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+                <span class="w-4 h-4 md:w-5 md:h-5 rounded-full mr-2 md:mr-3 transition-colors" style="background-color: #ffff99;" aria-hidden="true"></span> Referral
             </button>
         </div>
 
-        <p class="text-base text-gray-700 mt-8">Developed by the Oakland Schools Student Attendance Collaborative. Pair this tool with the <a href="https://docs.google.com/document/d/1JCDCm-SHNMgY-2U0hBb7xiRnypilbQ6LqDTfF7h2aGo/edit?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors">Guidance for Use of the Positive Attendance Intervention Tiers Tool</a> for detailed strategies and aligned resources.</p>
+        <p class="text-base text-gray-700 mt-8">Developed by the Oakland Schools Student Attendance Collaborative. Pair this tool with the <a href="https://docs.google.com/document/d/1JCDCm-SHNMgY-2U0hBb7xiRnypilbQ6LqDTfF7h2aGo/edit?usp=sharing" target="_blank" class="text-blue-600 hover:text-blue-800 underline hover:no-underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded">Guidance for Use of the Positive Attendance Intervention Tiers Tool</a> for detailed strategies and aligned resources.</p>
     </footer>
 
     <script>
@@ -278,21 +295,30 @@
             const wrapper = document.getElementById(id);
             const chevron = document.getElementById('chevron-' + id);
             
-            // Simply toggle the 'active' and 'rotate' classes for the clicked item.
-            // Sibling items are completely ignored, keeping them open if they already were.
+            // Get the triggering button to update its ARIA state
+            const btn = document.querySelector(`button[aria-controls="${id}"]`);
+            
             wrapper.classList.toggle('active');
             chevron.classList.toggle('rotate');
+
+            // Update aria-expanded for screen readers
+            if (btn) {
+                const isExpanded = wrapper.classList.contains('active');
+                btn.setAttribute('aria-expanded', isExpanded);
+            }
         }
 
         function toggleFocusArea(areaType) {
-            // 1. Toggle the visual state of the clicked legend button
             const legendButton = document.getElementById('legend-' + areaType);
             if (legendButton) {
+                // Toggle visual state
                 legendButton.classList.toggle('legend-inactive');
+                
+                // Update aria-pressed for screen readers
+                const isCurrentlyPressed = legendButton.getAttribute('aria-pressed') === 'true';
+                legendButton.setAttribute('aria-pressed', !isCurrentlyPressed);
             }
 
-            // 2. Find all cards that match this focus area and toggle their visibility
-            // We use Tailwind's 'hidden' class (display: none) to cleanly remove them from the grid flow
             const cards = document.querySelectorAll('.focus-' + areaType);
             cards.forEach(card => {
                 card.classList.toggle('hidden');
